@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css} " />
+	</head>
+	<body>
+		<div class="container">
+			<h1 class = "text-center">Todo Tasks</h1>
+			<hr />
+        	<p th:text="|Welcome|"></p>
+        	<table class="table table-bordered table-striped">
+            	<thead>
+                	<tr>
+                		<th>Action</th>
+                    	<th>Id</th>
+                    	<th>Description</th>
+                    	<th>Completed</th>
+                    	<th>Target Date</th>
+                    	<th>Modified Date</th>
+                    	<th>Status</th>
+                	</tr>
+            	</thead>
+            	<tbody>
+                	<tr th:each="item : ${todoTasks}">
+                    	<td>
+                        	<div class="btn btn-group-sm" role="group">
+                            	<a class="btn btn-info" th:href="@{/edit/todo/{id}(id=${item.id})}">Modify Task</a>
+                            	<a class="btn btn-danger" th:href="@{/delete/todo/{id}(id=${item.id})}">Delete Task</a>
+                        	</div>
+                    	</td>
+                    	<td th:text="${item.id}">item_id</td>
+                    	<td th:text="${item.description}">item_description</td>
+                    	<td th:text="${item.completed}">item_completed_status</td>
+                    	<td th:text="${item.targetDate}">item_target_date</td>
+                    	<td th:text="${item.modifiedDate}">item_modified_date</td>
+                    	<td th:text="${item.status}">item_status</td>
+                	</tr>
+            	</tbody>
+			</table>
+			
+			<p><a class="btn btn-success" href="/create-todo">Add a Todo!</a></p>
+			<p><a class="btn btn-info" href="/">Log Out</a></p>
+		</div>
+		
+		<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    	<script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+	</body>
+
+</html>
+	
